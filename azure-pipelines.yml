@@ -26,10 +26,10 @@ steps:
     testResultsFiles: '**/*.trx'
 
 - task: PublishCodeCoverageResults@1
-  displayName: 'Publish code coverage from $(System.DefaultWorkingDirectory)/dotnet-tests/coverage.cobertura.xml'
+  displayName: 'Publish code coverage from ./dotnet-tests/coverage.cobertura.xml'
   inputs:
     codeCoverageTool: Cobertura
-    summaryFileLocation: '$(System.DefaultWorkingDirectory)/dotnet-tests/coverage.cobertura.xml'
+    summaryFileLocation: './dotnet-tests/coverage.cobertura.xml'
 
 #- script: |
 #    docker-compose -f docs/docker-compose.yml --project-directory . -p docs up -d |

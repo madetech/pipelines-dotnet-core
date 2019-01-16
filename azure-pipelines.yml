@@ -25,6 +25,12 @@ steps:
     testRunner: VSTest
     testResultsFiles: '**/*.trx'
 
+- task: PublishCodeCoverageResults@3
+  displayName: 'Publish code coverage from $(System.DefaultWorkingDirectory)/dotnet-tests/coverage.cobertura.xml'
+  inputs:
+    codeCoverageTool: Cobertura
+    summaryFileLocation: '$(System.DefaultWorkingDirectory)/dotnet-tests/coverage.cobertura.xml'
+
 #- script: |
 #    docker-compose -f docs/docker-compose.yml --project-directory . -p docs up -d |
 #    docker wait docs_sut_1 |

@@ -1,4 +1,7 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using dotnetcore_sample;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using dotnetcore_sample.Controllers; 
@@ -32,6 +35,14 @@ namespace dotnetcore_tests
 
           // Assert
           Assert.AreEqual("Your contact page.", result.ViewData["Message"]);
+        }
+
+        [TestMethod]
+        public void GenerateWarnings()
+        {
+            var result = generate_warnings<int>.ConvertAll(s => s.ToString(), new List<int>{ 1 });
+
+            Assert.AreEqual(result.Single(), "1");
         }
     }
 }

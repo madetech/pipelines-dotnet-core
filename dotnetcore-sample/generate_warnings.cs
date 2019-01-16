@@ -8,7 +8,12 @@ namespace dotnetcore_sample
     {
         public static List<TOut> ConvertAll<T, TOut>(Func<T, TOut> convert, List<T> items)
         {
-            return items.Select(convert).ToList();
+            if (items.Any())
+            {
+                return items.Select(convert).ToList();
+            }
+            
+            throw new NotImplementedException();
         }
     }
 }

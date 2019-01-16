@@ -25,7 +25,7 @@ steps:
     testRunner: VSTest
     testResultsFiles: '**/*.trx'
 
-- task: PublishCodeCoverageResults@3
+- task: PublishCodeCoverageResults@1
   displayName: 'Publish code coverage from $(System.DefaultWorkingDirectory)/dotnet-tests/coverage.cobertura.xml'
   inputs:
     codeCoverageTool: Cobertura

@@ -10,9 +10,9 @@ variables:
 
 steps:
 - task: DotNetCoreCLI@2
-  displayName: Standalone Dotnet Build Task
+  displayName: dotnet Build Main CSPROJ
   inputs:
-    projects: '**/*.csproj'
+    projects: '**/dotnetcore-sample.csproj'
     arguments: '--configuration $(BuildConfiguration)'
 
 - script: |
@@ -31,7 +31,7 @@ steps:
     testResultsFiles: '**/*.trx'
 
 - task: PublishCodeCoverageResults@1
-  displayName: 'Publish code coverage from anywhere'
+  displayName: 'Publish code coverage'
   inputs:
     codeCoverageTool: Cobertura
     summaryFileLocation: '**/*coverage.xml'

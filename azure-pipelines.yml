@@ -36,7 +36,6 @@ steps:
     codeCoverageTool: Cobertura
     summaryFileLocation: '**/*coverage.xml'
 
-steps:
 - task: mspremier.BuildQualityChecks.QualityChecks-task.BuildQualityChecks@5
   displayName: 'Check build quality'
   inputs:

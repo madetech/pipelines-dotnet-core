@@ -16,7 +16,6 @@ steps:
     arguments: '--configuration $(BuildConfiguration)'
 
 - script: |
-#   dotnet build --configuration $(buildConfiguration)
     dotnet test dotnetcore-tests /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput='coverage.xml' --configuration $(buildConfiguration) --logger trx
     dotnet publish --configuration $(buildConfiguration) --output out
     docker build -f Dockerfile -t $(dockerId).azurecr.io/$(imageName) .

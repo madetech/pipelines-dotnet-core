@@ -11,7 +11,7 @@ variables:
 steps:
 - script: |
     dotnet build --configuration $(buildConfiguration)
-    dotnet test dotnetcore-tests /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura --configuration $(buildConfiguration) --logger trx
+    dotnet test dotnetcore-tests /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput='coverage.xml' --configuration $(buildConfiguration) --logger trx
     dotnet publish --configuration $(buildConfiguration) --output out
     docker build -f Dockerfile -t $(dockerId).azurecr.io/$(imageName) .
     docker login -u $(dockerId) -p $pswd $(dockerid).azurecr.io
@@ -27,10 +27,16 @@ steps:
     testResultsFiles: '**/*.trx'
 
 - task: PublishCodeCoverageResults@1
-  displayName: 'Publish code coverage from ./dotnet-tests/coverage.cobertura.xml'
+  displayName: 'Publish code coverage'
   inputs:
     codeCoverageTool: Cobertura
-    summaryFileLocation: './dotnetcore-tests/coverage.cobertura.xml'
+    summaryFileLocation: './dotnetcore-tests/coverage.xml'
+
+- task: PublishCodeCoverageResults@1
+  displayName: 'Publish code coverage from anywhere'
+  inputs:
+    codeCoverageTool: Cobertura
+    summaryFileLocation: '**/*coverage.xml'
 
 #- script: |
 #    docker-compose -f docs/docker-compose.yml --project-directory . -p docs up -d |

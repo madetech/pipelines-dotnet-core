@@ -15,8 +15,14 @@ steps:
     projects: '**/dotnetcore-sample.csproj'
     arguments: '--configuration $(BuildConfiguration)'
 
+- task: DotNetCoreCLI@2
+  displayName: Test
+  inputs:
+    command: test
+    projects: '**/dotnetcore-tests.csproj'
+    arguments: '/p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput='coverage.xml' --configuration $(buildConfiguration) --logger trx'
+
 - script: |
-    dotnet test dotnetcore-tests /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput='coverage.xml' --configuration $(buildConfiguration) --logger trx
     dotnet publish --configuration $(buildConfiguration) --output out
     docker build -f Dockerfile -t $(dockerId).azurecr.io/$(imageName) .
     docker login -u $(dockerId) -p $pswd $(dockerid).azurecr.io

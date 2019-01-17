@@ -27,12 +27,6 @@ steps:
     testResultsFiles: '**/*.trx'
 
 - task: PublishCodeCoverageResults@1
-  displayName: 'Publish code coverage'
-  inputs:
-    codeCoverageTool: Cobertura
-    summaryFileLocation: './dotnetcore-tests/coverage.xml'
-
-- task: PublishCodeCoverageResults@1
   displayName: 'Publish code coverage from anywhere'
   inputs:
     codeCoverageTool: Cobertura

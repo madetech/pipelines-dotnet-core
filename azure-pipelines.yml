@@ -13,7 +13,7 @@ steps:
   displayName: dotnet Build Main CSPROJ
   inputs:
     projects: '**/dotnetcore-sample.csproj'
-    arguments: '--configuration $(BuildConfiguration)'
+    arguments: '--configuration $(BuildConfiguration) --no-incremental'
 
 - script: |
     dotnet test dotnetcore-tests /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput='coverage.xml' --configuration $(buildConfiguration) --logger trx
@@ -41,7 +41,7 @@ steps:
   inputs:
     checkWarnings: true
     warningFailOption: fixed
-    warningThreshold: 0
+    warningThreshold: 10
 
 #- script: |
 #    docker-compose -f docs/docker-compose.yml --project-directory . -p docs up -d |

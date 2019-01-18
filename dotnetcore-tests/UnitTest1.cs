@@ -44,5 +44,13 @@ namespace dotnetcore_tests
 
             Assert.AreEqual(result.Single(), "1");
         }
+        
+        [TestMethod]
+        public void FailingTest()
+        {
+            var result = generate_warnings<int>.ConvertAll(s => s.ToString(), new List<int>{ 1 });
+
+            Assert.AreEqual(result.Single(), "2");
+        }
     }
 }

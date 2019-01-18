@@ -15,7 +15,7 @@ steps:
 - task: MSBuild@1
   displayName: 'Build using MSBuild (not dotnet core)'
   inputs:
-    solution: '**/dotnetcore-sample.csproj'
+    solution: '**/*.sln'
     configuration: '$(BuildConfiguration)'
 
 - script: |

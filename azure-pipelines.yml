@@ -9,13 +9,8 @@ variables:
   # define two more variables dockerId and dockerPassword in the build pipeline in UI
 
 steps:
-- task: NuGetToolInstaller@0
-  displayName: 'Use NuGet 4.3.0'
-
-- task: NuGetCommand@2
-  displayName: 'NuGet restore'
-  inputs:
-    restoreSolution: '**/*.sln'
+- script: |
+    dotnet restore
 
 - task: MSBuild@1
   displayName: 'Build using MSBuild (not dotnet core)'

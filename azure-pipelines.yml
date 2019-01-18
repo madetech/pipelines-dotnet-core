@@ -42,6 +42,9 @@ steps:
     checkWarnings: true
     warningFailOption: fixed
     warningThreshold: 10
+    warningFilters: |
+     /\[warning\]/i
+     /\[super\]/i
 
 #- script: |
 #    docker-compose -f docs/docker-compose.yml --project-directory . -p docs up -d |
